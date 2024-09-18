@@ -57,4 +57,5 @@ php artisan migrate --database=pgsql --path=packages/doctalk/src/Migrations
 ```
 
 Visit `/chat-with-docs/chat` to see the DocChat in action.
+
 Visit `/chat-with-docs/admin/docs` to add the PDF documents in database.
