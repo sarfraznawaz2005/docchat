@@ -14,7 +14,7 @@
 
     <div>
         @if ($conversation && $conversation->exists && $conversation->messages->count() > 2)
-            <livewire:doctalk.chatlist :conversation="$conversation" lazy="on-load"/>
+            <livewire:doctalk.chatlist :conversation="$conversation" lazy/>
         @else
             <livewire:doctalk.chatlist :conversation="$conversation"/>
         @endif
