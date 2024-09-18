@@ -83,7 +83,7 @@
             wire:ignore
             x-cloak
             class="topbuttons"
-            style="display: flex; justify-content: flex-end; align-items: center; position: fixed; top: 5rem; right: 2.5rem; gap: 0.5rem; z-index: 100;">
+            style="display: flex; justify-content: flex-end; align-items: center; position: fixed; top: 4rem; right: 2.5rem; gap: 0.5rem; z-index: 100;">
 
             <!-- Clear Conversation Button -->
             <div x-data="{ isConfirming: false }" class="tooltip-wrapper tooltip t-top pointer"
