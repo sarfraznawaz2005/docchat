@@ -294,8 +294,8 @@
                 e.preventDefault();
 
                 @if (isset($conversation) && $conversation->exists && config('doctalk.animated_message'))
-                    document.getElementById('chatQuery').value = e.target.textContent;
-                    document.getElementById('chatForm').dispatchEvent(new KeyboardEvent('submit', {key: 'Enter'}));
+                    //document.getElementById('chatQuery').value = e.target.textContent;
+                    //document.getElementById('chatForm').dispatchEvent(new KeyboardEvent('submit', {key: 'Enter'}));
                 @endif
 
                 Livewire.dispatch('suggestedAnswer', [e.target.textContent]);
