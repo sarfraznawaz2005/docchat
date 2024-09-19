@@ -103,7 +103,7 @@
                             }"
                         style="padding: 0.5rem; padding-right: 0.8rem; display: inline-flex; align-items: center; gap: 0.5rem; font-size: 0.875rem; border-radius: 0.3rem; box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05); outline: none; cursor: pointer; transition: background-color 0.2s, color 0.2s;">
                     <!-- Delete Icon -->
-                    <x-doctalk::icons.delete style="flex-shrink: 0; width: 1rem; height: 1rem;"/>
+                    <x-doctalk::icons.delete style="flex-shrink: 0; width: 1rem; height: 1rem;" width="18" height="18" />
                     <!-- Button Text -->
                     <span x-text="isConfirming ? 'Confirm?' : 'Clear'"></span>
                 </button>
