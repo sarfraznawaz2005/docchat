@@ -34,7 +34,7 @@ return new class extends Migration {
         Schema::create('conversations', function (Blueprint $table) {
             $table->id();
             $table->integer('user_id')->unsigned()->default(0);
-            $table->string('name');
+            $table->string('name', 512);
             $table->boolean('favorite')->default(false);
             $table->boolean('archived')->default(false);
             $table->timestamps();
