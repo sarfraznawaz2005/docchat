@@ -68,7 +68,7 @@
                     text-align: left;
                     padding: 20px;
                     border-radius: 10px;
-                    font-size: 17px;
+                    font-size: 16px;
                     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
                     color: #555;
                     border:1px solid #eaebed;
