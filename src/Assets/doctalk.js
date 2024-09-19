@@ -6,7 +6,7 @@ function toggleSidebar() {
         sidebar.classList.toggle('active');
     } else {
         sidebar.classList.toggle('hidden');
-        mainContent.classList.toggle('full-width');
+        mainContent && mainContent.classList.toggle('full-width');
     }
 }
 
@@ -22,7 +22,7 @@ function checkScreenSize() {
     } else {
         sidebar.classList.remove('active');
         sidebar.classList.remove('hidden');
-        mainContent.classList.remove('full-width');
+        mainContent && mainContent.classList.remove('full-width');
     }
 }
 
