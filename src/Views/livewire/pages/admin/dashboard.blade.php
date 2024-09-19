@@ -68,7 +68,7 @@
         .dashboard-title {
             font-size: 16px;
             color: #555;
-            font-weight: 500;
+            font-weight: 400;
             margin-bottom: 15px;
             text-transform: uppercase;
             letter-spacing: 1px;
