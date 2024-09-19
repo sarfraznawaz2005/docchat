@@ -26,48 +26,122 @@
         ></div>
 
         <!-- Spinner Container -->
-        <div
-            style="
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100%;
-            width: 100%;
-            z-index: 1000;
-        "
-        >
-            <!-- Spinner SVG -->
-            <svg
-                style="
-                width: 3rem;
-                height: 3rem;
-                color: #2563eb;
-                animation: spin 1s linear infinite;
-            "
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-            >
-                <circle
-                    cx="12"
-                    cy="12"
-                    r="10"
-                    stroke="currentColor"
-                    stroke-width="2"
-                ></circle>
-                <path
-                    style="opacity: 0.75;"
-                    fill="currentColor"
-                    d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"
-                ></path>
-            </svg>
+        <div class="loader">
+            <div style="--i:1" class="loader_item"></div>
+            <div style="--i:2" class="loader_item"></div>
+            <div style="--i:3" class="loader_item"></div>
+            <div style="--i:4" class="loader_item"></div>
+            <div style="--i:5" class="loader_item"></div>
+            <div style="--i:6" class="loader_item"></div>
+            <div style="--i:7" class="loader_item"></div>
+            <div style="--i:8" class="loader_item"></div>
+            <div style="--i:9" class="loader_item"></div>
+            <div style="--i:10" class="loader_item"></div>
+            <div style="--i:11" class="loader_item"></div>
+            <div style="--i:12" class="loader_item"></div>
         </div>
+
+
     </div>
 
     <style>
-        @keyframes spin {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
+        /* From Uiverse.io by andrew-demchenk0 */
+        .loader {
+            display: inline-block;
+            position: relative;
+            width: 80px;
+            height: 80px;
         }
+
+        .loader .loader_item {
+            transform-origin: 40px 40px;
+            animation: spinner 1.2s linear infinite;
+        }
+
+        .loader .loader_item:after {
+            content: " ";
+            display: block;
+            position: absolute;
+            top: 3px;
+            left: 37px;
+            width: 6px;
+            height: 18px;
+            border-radius: 20%;
+            /* try any color u want (yellow, red, lightskyblue ect...) */
+            background: green;
+        }
+
+        .loader .loader_item:nth-child(1) {
+            transform: rotate(0deg);
+            animation-delay: -1.1s;
+        }
+
+        .loader .loader_item:nth-child(2) {
+            transform: rotate(30deg);
+            animation-delay: -1s;
+        }
+
+        .loader .loader_item:nth-child(3) {
+            transform: rotate(60deg);
+            animation-delay: -0.9s;
+        }
+
+        .loader .loader_item:nth-child(4) {
+            transform: rotate(90deg);
+            animation-delay: -0.8s;
+        }
+
+        .loader .loader_item:nth-child(5) {
+            transform: rotate(120deg);
+            animation-delay: -0.7s;
+        }
+
+        .loader .loader_item:nth-child(6) {
+            transform: rotate(150deg);
+            animation-delay: -0.6s;
+        }
+
+        .loader .loader_item:nth-child(7) {
+            transform: rotate(180deg);
+            animation-delay: -0.5s;
+        }
+
+        .loader .loader_item:nth-child(8) {
+            transform: rotate(210deg);
+            animation-delay: -0.4s;
+        }
+
+        .loader .loader_item:nth-child(9) {
+            transform: rotate(240deg);
+            animation-delay: -0.3s;
+        }
+
+        .loader .loader_item:nth-child(10) {
+            transform: rotate(270deg);
+            animation-delay: -0.2s;
+        }
+
+        .loader .loader_item:nth-child(11) {
+            transform: rotate(300deg);
+            animation-delay: -0.1s;
+        }
+
+        .loader .loader_item:nth-child(12) {
+            transform: rotate(330deg);
+            animation-delay: 0s;
+        }
+
+        @keyframes spinner {
+            0% {
+                opacity: 1;
+                filter: hue-rotate(0deg);
+            }
+
+            100% {
+                opacity: 0;
+                filter: hue-rotate(360deg);
+            }
+        }
+
     </style>
 </div>
