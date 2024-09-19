@@ -59,22 +59,28 @@
                 </span>
         </div>
     @else
-        <div class="flex justifyCenter alignCenter" wire:ignore>
-               <span
-                   style="
+        <div class="flex justifyCenter" wire:ignore>
+            <div
+                style="
                     position: absolute;
-                    top:40%;
-                    background: #F7F8F9;
-                    text-align: center;
-                    padding: 25px;
+                    top:30%;
+                    background: #f7f8f9;
+                    text-align: left;
+                    padding: 20px;
                     border-radius: 10px;
                     font-size: 17px;
-                    margin: 20px;
-                    color: #333;
+                    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+                    color: #555;
                     border:1px solid #eaebed;
                     ">
-                    🎉 Start a new conversation by typing a message below or select an existing conversation from the left sidebar.
-                </span>
+                <strong>🎉 Tips</strong>
+
+                <ul style="list-style: square; margin: 20px 0 0 20px; line-height: 2rem;">
+                    <li>For best results, always discuss each different case in a new conversation.</li>
+                    <li>When asking questions, be specific mentioning case numbers or other relevant details.</li>
+                    <li>Provide the most accurate information to get the best possible response.</li>
+                </ul>
+            </div>
         </div>
     @endif
 
@@ -103,7 +109,7 @@
                             }"
                         style="padding: 0.5rem; padding-right: 0.8rem; display: inline-flex; align-items: center; gap: 0.5rem; font-size: 0.875rem; border-radius: 0.3rem; box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05); outline: none; cursor: pointer; transition: background-color 0.2s, color 0.2s;">
                     <!-- Delete Icon -->
-                    <x-doctalk::icons.delete style="flex-shrink: 0; width: 1rem; height: 1rem;" width="18" height="18" />
+                    <x-doctalk::icons.delete style="flex-shrink: 0; width: 1rem; height: 1rem;" width="18" height="18"/>
                     <!-- Button Text -->
                     <span x-text="isConfirming ? 'Confirm?' : 'Clear'"></span>
                 </button>
