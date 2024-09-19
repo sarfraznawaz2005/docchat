@@ -1,3 +1,6 @@
+@php
+    @endphp
+
 <div>
     <x-doctalk::admin.sidebarlinks/>
 

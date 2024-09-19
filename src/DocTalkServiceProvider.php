@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\ServiceProvider;
 use Livewire\Livewire;
 use Package\DocTalk\Livewire\Chat\Chatlist;
+use Package\DocTalk\Livewire\Chat\Embed;
 use Package\DocTalk\Livewire\Chat\Message;
 use Package\DocTalk\Livewire\Chat\Sidebar;
 use Package\DocTalk\Livewire\Offline;
@@ -63,6 +64,7 @@ class DocTalkServiceProvider extends ServiceProvider
         Livewire::component('doctalk.offline', Offline::class);
         Livewire::component('doctalk.chatlist', Chatlist::class);
         Livewire::component('doctalk.sidebar', Sidebar::class);
+        Livewire::component('doctalk.embed', Embed::class);
     }
 
     private function registerCustomValidators(): void
