@@ -43,13 +43,7 @@ class Chat extends Component
         $this->validate();
 
         if (!$this->query) {
-            $this->dispatch('flashMessage', [
-                'message' => 'Please enter a message.',
-                'type' => 'error'
-            ]);
-
             $this->dispatch('focusInput');
-
             return;
         }
 

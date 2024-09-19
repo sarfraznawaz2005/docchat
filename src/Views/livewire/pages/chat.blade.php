@@ -149,6 +149,7 @@
             @if(Package\DocTalk\Services\LLMUtilities::goodToGo())
                 <div class="tooltip-wrapper tooltip t-top" data-tooltip-text="Send Message">
                     <button type="submit"
+                            id="send-button"
                             class="send-button"
                             x-ref="sendButton"
                             :disabled="!$wire.query.trim()"
@@ -291,6 +292,12 @@
 
             function handleLinkClick(e) {
                 e.preventDefault();
+
+                @if (isset($conversation) && $conversation->exists && config('doctalk.animated_message'))
+                    document.getElementById('chatQuery').value = e.target.textContent;
+                    document.getElementById('chatForm').dispatchEvent(new KeyboardEvent('submit', {key: 'Enter'}));
+                @endif
+
                 Livewire.dispatch('suggestedAnswer', [e.target.textContent]);
             }
 
