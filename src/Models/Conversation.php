@@ -72,6 +72,9 @@ class Conversation extends Model
         } catch (Exception) {
             //
         } finally {
+
+            $title = mb_convert_encoding($title, 'UTF-8', 'UTF-8');
+
             $this->name = $title;
             $this->updated_at = now();
             $this->created_at = now();
