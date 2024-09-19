@@ -1,3 +1,5 @@
+{{-- usage: @include('doctalk::livewire.chat.embed') --}}
+
 <div class="doctalk">
     <link rel="stylesheet" href="{{ asset('vendor/doctalk/assets/code-highlight-light-plus-theme.css') }}"/>
     <link rel="stylesheet" href="{{ asset('vendor/doctalk/assets/doctalk.css') }}"/>
