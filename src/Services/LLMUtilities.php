@@ -4,7 +4,6 @@ namespace Package\DocTalk\Services;
 
 use DOMDocument;
 use Exception;
-use Illuminate\Support\Facades\Log;
 use Package\DocTalk\DocTalkConstants;
 use Package\DocTalk\LLM\GeminiProvider;
 use Package\DocTalk\LLM\LlmProvider;
@@ -271,7 +270,7 @@ class LLMUtilities
                 foreach ($pages as $pageNumber => $page) {
                     $texts[] = [
                         'text' => $page->getText(),
-                        'source' => basename($file) . '[' . $pageNumber + 1 . ']',
+                        'source' => basename($file) . ' [' . $pageNumber + 1 . ']',
                         'file' => basename($file),
                     ];
                 }
@@ -475,13 +474,22 @@ class LLMUtilities
         $prompt = str_ireplace('{{CONVERSATION_HISTORY}}', $conversationHistory, $prompt);
 
         $prompt .= $relatedQuestionsPrompt;
-        $prompt .= "\n\nPlease provide answer here:";
 
         if (app()->environment('local')) {
-            Log::info("\n" . str_repeat('-', 100) . "\n" . $prompt . "\n");
+            info("\n" . str_repeat('-', 100) . "\n" . $prompt . "\n");
         }
 
-        return $prompt;
+        if (!config('doctalk.llm.enable_related_questions')) {
+            $prompt .= <<< 'EOL'
+
+        Remember to only provid answers from provided context or conversation history, DO NOT answer from your own knowledge base.
+        If you are unsure about the answer, respond with "Sorry, I don't have enough information to answer this question accurately."
+        NEVER ATTEMPT TO MAKE UP OR GUESS AN ANSWER.
+
+        EOL;
+        }
+
+        return $prompt . "\n\nYOUR ANSWER HERE:\n";
     }
 
     public static function processMarkdownToHtml($markdownContent, $fixBroken = true): string
@@ -624,5 +632,38 @@ class LLMUtilities
         }
 
         return "0mb";
+    }
+
+    public static function formatMetadata(array $array): string
+    {
+        $filePages = [];
+
+        foreach ($array as $item) {
+            // extract filename and page number
+            if (preg_match('/^(.*\.pdf) \[(\d+)]$/', $item, $matches)) {
+                $filename = $matches[1];
+                $pageNumber = $matches[2];
+
+                // Initialize the array for the filename if it doesn't exist
+                if (!isset($filePages[$filename])) {
+                    $filePages[$filename] = [];
+                }
+
+                // Add the page number if it's not already in the array
+                if (!in_array($pageNumber, $filePages[$filename])) {
+                    $filePages[$filename][] = $pageNumber;
+                }
+            }
+        }
+
+        // Prepare the output
+        $outputArray = [];
+
+        foreach ($filePages as $filename => $pages) {
+            sort($pages, SORT_NUMERIC);
+            $outputArray[] = $filename . ' [' . implode(', ', $pages) . ']';
+        }
+
+        return implode(', ', $outputArray);
     }
 }

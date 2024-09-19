@@ -93,6 +93,7 @@ class Chatlist extends Component
 
             $llm = LLMUtilities::getLLM();
             $context = '';
+            $metadata = [];
 
             $results = LLMUtilities::searchTexts($usertMessage->content);
 
@@ -108,8 +109,8 @@ class Chatlist extends Component
 
             // build context
             foreach ($results as $result) {
-                $text = $result['content'];
-                $context .= $text . "\n\n<sources>" . $result['metadata'] . "</sources>\n\n";
+                $context .= $result['content'] . "\n\n";
+                $metadata[] = $result['metadata'];
             }
 
             $latestMessages = $this->getLatestMessages($this->conversation);
@@ -129,8 +130,14 @@ class Chatlist extends Component
                 );
             });
 
+            $consolidatedResponse = LLMUtilities::processMarkdownToHtml($consolidatedResponse);
+
+            if (!str_contains(strtolower($consolidatedResponse), 'have enough information to answer this question accurately.')) {
+                $consolidatedResponse .= '<small>Sources: ' . LLMUtilities::formatMetadata($metadata) . '</small>';
+            }
+
             $tempMessage->update([
-                'content' => LLMUtilities::processMarkdownToHtml($consolidatedResponse),
+                'content' => $consolidatedResponse,
             ]);
         } catch (Exception $e) {
             Log::error(__CLASS__ . ': ' . $e->getMessage());
