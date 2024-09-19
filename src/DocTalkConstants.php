@@ -47,6 +47,8 @@ final class DocTalkConstants
     6. If you need to make any assumptions or inferences, clearly state them as such.
     7. Do not mention sources or citations in your response.
 
+    Apporach this task step by step, take your time and do not skip any steps.
+
     FOLLOW BELOW RULE STRICTLY:
     If the information needed to answer the query is not present in the context or conversation history,
     respond with "Sorry, I don't have enough information to answer this question accurately." instead of guessing or
