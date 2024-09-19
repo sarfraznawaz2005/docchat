@@ -475,10 +475,6 @@ class LLMUtilities
 
         $prompt .= $relatedQuestionsPrompt;
 
-        if (app()->environment('local')) {
-            info("\n" . str_repeat('-', 100) . "\n" . $prompt . "\n");
-        }
-
         if (!config('doctalk.llm.enable_related_questions')) {
             $prompt .= <<< 'EOL'
 
@@ -489,7 +485,13 @@ class LLMUtilities
         EOL;
         }
 
-        return $prompt . "\n\nYOUR ANSWER HERE:\n";
+        $prompt .= "\n\nYOUR ANSWER HERE:";
+
+        if (app()->environment('local')) {
+            info("\n" . str_repeat('-', 100) . "\n" . $prompt . "\n");
+        }
+
+        return $prompt;
     }
 
     public static function processMarkdownToHtml($markdownContent, $fixBroken = true): string
