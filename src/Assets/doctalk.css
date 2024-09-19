@@ -67,7 +67,7 @@ body {
 .chat-container .sidebar ul li a {
     display: block;
     text-decoration: none;
-    color: #333;
+    color: #111;
     padding: 12px;
     font-size: 0.9rem;
 }
