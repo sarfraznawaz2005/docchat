@@ -1,8 +1,5 @@
 @php
-    use Package\DocTalk\Models\Document;
-    use Package\DocTalk\Models\Conversation;
-    use Package\DocTalk\Models\Message;
-@endphp
+    @endphp
 
 <div>
     <x-doctalk::admin.sidebarlinks/>
@@ -12,25 +9,25 @@
             <div class="dashboard-box">
                 <div class="dashboard-title">Documents</div>
                 <div class="dashboard-number">
-                    {{number_format(Document::query()->distinct()->count('filename'), 0, ',')}}
+                    {{number_format($this->stats['documents'], 0, ',')}}
                 </div>
             </div>
             <div class="dashboard-box">
                 <div class="dashboard-title">Conversations</div>
                 <div class="dashboard-number">
-                    {{number_format(Conversation::query()->count(), 0, ',')}}
+                    {{number_format($this->stats['conversations'], 0, ',')}}
                 </div>
             </div>
             <div class="dashboard-box">
                 <div class="dashboard-title">Users</div>
                 <div class="dashboard-number">
-                    {{number_format(Conversation::query()->distinct()->count('user_id'), 0, ',')}}
+                    {{number_format($this->stats['users'], 0, ',')}}
                 </div>
             </div>
             <div class="dashboard-box">
                 <div class="dashboard-title">Messages</div>
                 <div class="dashboard-number">
-                    {{number_format(Message::query()->count(), 0, ',')}}
+                    {{number_format($this->stats['messages'], 0, ',')}}
                 </div>
             </div>
         </div>
