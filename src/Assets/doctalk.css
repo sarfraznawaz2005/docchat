@@ -918,3 +918,12 @@ body {
 .chat-container .visible {
     visibility: visible;
 }
+
+.chat-container code {
+    display: inline-block !important;
+    padding: 0 10px !important;
+    margin: 3px 0 !important;
+    box-shadow: 0 0 0 1px #d3d3d3;
+    border-radius: 4px;
+    font-size: 0.9rem;
+}
