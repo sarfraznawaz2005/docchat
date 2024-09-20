@@ -62,6 +62,7 @@ class LLMUtilities
             ->toArray();
 
         // full semantic search
+        // todo: fix this, it always returns records even for non-matching queries due to how vector search works.
         $results = static::performLLMSemanticSearch($query);
 
         if (!empty($results)) {
@@ -149,6 +150,7 @@ class LLMUtilities
             $similarity = static::cosineSimilarity($docVector, $queryVector);
 
             if ($similarity > 0) {
+                static::$records[$key]['similarity'] = $similarity;
                 $rankedResults[] = static::$records[$key];
             }
         }
@@ -173,6 +175,7 @@ class LLMUtilities
             $maxScore = max($exactMatchScore, $fuzzyMatchScore);
 
             if ($maxScore >= static::getSimiliarityThreashold()) {
+                $chunk['similarity'] = $maxScore;
                 $results[] = $chunk;
             }
         }
