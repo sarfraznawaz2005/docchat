@@ -131,8 +131,10 @@ class Chatlist extends Component
 
             $consolidatedResponse = LLMUtilities::processMarkdownToHtml($consolidatedResponse);
 
-            if (!str_contains(strtolower($consolidatedResponse), 'have enough information to answer this question accurately.')) {
-                $consolidatedResponse .= '<small>Sources: ' . LLMUtilities::formatMetadata($metadata) . '</small>';
+            if (config('doctalk.llm.show_sources')) {
+                if (!str_contains(strtolower($consolidatedResponse), 'have enough information to answer this question accurately.')) {
+                    $consolidatedResponse .= '<small>Sources: ' . LLMUtilities::formatMetadata($metadata) . '</small>';
+                }
             }
 
             $tempMessage->update([

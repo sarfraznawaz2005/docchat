@@ -72,6 +72,7 @@ return [
         ],
         'generate_conversation_titles' => true, // Automatically generate conversation titles using AI
         'enable_related_questions' => true, // Enable AI-generated related questions
+        'show_sources' => true, // Show source documents and page numbers under responses
     ],
 
     /*
