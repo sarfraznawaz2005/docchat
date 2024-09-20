@@ -113,6 +113,7 @@ class LLMUtilities
         // Combine with ORDER BY and LIMIT to use an index
         return Document::query()
             ->select(['id', 'content', 'llm', 'metadata'])
+            ->selectRaw("$field <-> ? AS score", [$queryEmbeddings])
             ->orderByRaw("$field <-> ?", [$queryEmbeddings])
             ->limit(5)
             ->get()
@@ -688,7 +689,7 @@ class LLMUtilities
         if (app()->environment('local')) {
             info("\n" . str_repeat('-', 100) . "\n" . $standAloneQuestionPrompt . "\n");
         }
-        
+
         return !str_contains(strtolower($standAloneQuestion), 'no question provided') ? $standAloneQuestion : '';
     }
 }
