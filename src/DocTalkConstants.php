@@ -4,7 +4,7 @@ namespace Package\DocTalk;
 
 final class DocTalkConstants
 {
-    const  NO_RESULTS_FOUND = "Sorry, I don't have enough information to answer this question accurately.";
+    const  NO_RESULTS_FOUND = "Sorry, I don't have enough information to answer this question accurately..";
     const  LOADING_STRING = 'Thinking...';
     const  CONVERSATION_HISTORY = 50;
 
