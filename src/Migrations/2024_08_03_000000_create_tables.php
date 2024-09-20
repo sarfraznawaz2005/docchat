@@ -23,10 +23,36 @@ return new class extends Migration {
             $table->timestamps();
         });
 
+        // Add the textsearch column using a separate statement since Laravel's schema builder doesn't support generated columns directly
+        DB::statement("
+            ALTER TABLE documents
+            ADD COLUMN textsearch tsvector GENERATED ALWAYS AS (to_tsvector('english', content)) STORED
+        ");
+
+        // Create a GIN index on the textsearch column for full-text search
+        DB::statement('CREATE INDEX idx_documents_textsearch ON documents USING GIN(textsearch)');
+
         // This is a Postgres-specific index that allows us to do fast nearest-neighbor searches
         // when there are a lot of high-dimensional embeddings in the database.
         DB::statement('CREATE INDEX ON documents USING hnsw (embedding_768 vector_l2_ops)');
         DB::statement('CREATE INDEX ON documents USING hnsw (embedding_1536 vector_l2_ops)');
+
+        // Create a function to update the textsearch column
+        DB::unprepared("
+            CREATE FUNCTION documents_tsvector_trigger() RETURNS trigger AS $$
+            BEGIN
+                NEW.textsearch := to_tsvector('english', NEW.content);
+                RETURN NEW;
+            END
+            $$ LANGUAGE plpgsql;
+        ");
+
+        // Create a trigger that calls the function on insert or update
+        DB::unprepared("
+            CREATE TRIGGER tsvectorupdate BEFORE INSERT OR UPDATE
+            ON documents FOR EACH ROW EXECUTE FUNCTION documents_tsvector_trigger();
+        ");
+
 
         //DB::statement('CREATE INDEX embedding_1536_index ON documents USING ivfflat (embedding_1536 vector_l2_ops) WITH (lists = 100)');
         //DB::statement('CREATE INDEX embedding_768_index ON documents USING ivfflat (embedding_768 vector_l2_ops) WITH (lists = 100)');

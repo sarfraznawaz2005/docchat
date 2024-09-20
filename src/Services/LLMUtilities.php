@@ -64,6 +64,7 @@ class LLMUtilities
         // full semantic search
         // todo: fix this, it always returns records even for non-matching queries due to how vector search works.
         $results = static::performLLMSemanticSearch($query);
+        //dd($results);
 
         if (!empty($results)) {
             if (app()->environment('local')) {
@@ -112,10 +113,25 @@ class LLMUtilities
         $queryEmbeddings = new Vector($queryEmbeddings['embeddings'][0]['values'] ?? $queryEmbeddings[0]['embedding']);
 
         // Combine with ORDER BY and LIMIT to use an index
+//        return Document::query()
+//            ->select(['id', 'content', 'llm', 'metadata'])
+//            ->selectRaw("$field <-> ? AS score", [$queryEmbeddings])
+//            ->orderByRaw("$field <-> ?", [$queryEmbeddings])
+//            ->limit(5)
+//            ->get()
+//            ->toArray();
+
         return Document::query()
             ->select(['id', 'content', 'llm', 'metadata'])
+            // Calculate the text rank based on full-text search
+            ->selectRaw("ts_rank_cd(textsearch, plainto_tsquery(?)) AS rank", [$query])
+            // Calculate the vector similarity score
             ->selectRaw("$field <-> ? AS score", [$queryEmbeddings])
-            ->orderByRaw("$field <-> ?", [$queryEmbeddings])
+            // Apply the full-text search filter
+            ->whereRaw("textsearch @@ plainto_tsquery(?)", [$query])
+            // Order first by text rank descending, then by vector similarity ascending
+            ->orderByRaw("score ASC, rank DESC")
+            // Limit the number of results
             ->limit(5)
             ->get()
             ->toArray();
