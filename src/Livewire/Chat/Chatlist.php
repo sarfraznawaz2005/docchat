@@ -94,7 +94,20 @@ class Chatlist extends Component
             $context = '';
             $metadata = [];
 
+            $latestMessages = $this->getLatestMessages($this->conversation);
+            $uniqueMessages = $this->getUniqueMessages($latestMessages, $usertMessage);
+            $conversationHistory = implode("\n", array_map(fn($message) => LLMUtilities::htmlToText($message), $uniqueMessages));
+
             $results = LLMUtilities::searchTexts($usertMessage->content);
+
+            // try with standalone question
+            if (!count($results)) {
+                $standAloneQuestion = LLMUtilities::getStandAloneQuestion($usertMessage->content, $conversationHistory);
+
+                if ($standAloneQuestion) {
+                    $results = LLMUtilities::searchTexts($standAloneQuestion);
+                }
+            }
 
             if (!count($results)) {
                 $this->stream(
@@ -111,10 +124,6 @@ class Chatlist extends Component
                 $context .= $result['content'] . "\n\n";
                 $metadata[] = $result['metadata'];
             }
-
-            $latestMessages = $this->getLatestMessages($this->conversation);
-            $uniqueMessages = $this->getUniqueMessages($latestMessages, $usertMessage);
-            $conversationHistory = implode("\n", array_map(fn($message) => LLMUtilities::htmlToText($message), $uniqueMessages));
 
             $prompt = LLMUtilities::makePrompt($context, $usertMessage->content, $conversationHistory);
 

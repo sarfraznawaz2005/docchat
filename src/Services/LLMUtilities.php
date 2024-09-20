@@ -668,4 +668,27 @@ class LLMUtilities
 
         return implode(', ', $outputArray);
     }
+
+    public static function getStandAloneQuestion(string $query, string $conversationHistory): string
+    {
+        $standAloneQuestionPrompt = "Given the following conversation and a follow-up question, rephrase the
+            follow-up question to be a standalone question. If provided context does not include a follow-up
+            question, then just answer with 'No Question Provided' and nothing else.
+
+            <conversation_history>
+            $conversationHistory
+            </conversation_history>
+
+            follow-up question: $query
+            standalone question:
+            ";
+
+        $standAloneQuestion = static::$llm->chat($standAloneQuestionPrompt);
+
+        if (app()->environment('local')) {
+            info("\n" . str_repeat('-', 100) . "\n" . $standAloneQuestionPrompt . "\n");
+        }
+        
+        return !str_contains(strtolower($standAloneQuestion), 'no question provided') ? $standAloneQuestion : '';
+    }
 }
