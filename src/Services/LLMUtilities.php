@@ -116,27 +116,10 @@ class LLMUtilities
         return Document::query()
             ->select(['id', 'content', 'llm', 'metadata'])
             ->selectRaw("$field <-> ? AS score", [$queryEmbeddings])
-            ->orderByRaw('score ASC') // in L2, lower is better
+            ->orderByRaw("$field <-> ? AS score", [$queryEmbeddings]) // in L2, lower is better
             ->limit(5)
             ->get()
             ->toArray();
-
-        // this does not always return results due to ->whereRaw("textsearch @@ plainto_tsquery(?)", [$query])
-//        return Document::query()
-//            ->select(['id', 'content', 'llm', 'metadata'])
-//            // Calculate the text rank based on full-text search
-//            ->selectRaw("ts_rank_cd(textsearch, plainto_tsquery(?)) AS rank", [$query])
-//            // Calculate the vector similarity score
-//            ->selectRaw("$field <-> ? AS score", [$queryEmbeddings])
-//            // Apply the full-text search filter
-//            ->whereRaw("textsearch @@ plainto_tsquery(?)", [$query])
-//            // Order first by text rank descending, then by vector similarity ascending
-//            ->orderByRaw("score ASC, rank DESC")
-//            // Limit the number of results
-//            ->limit(5)
-//            ->get()
-//            ->toArray();
-
     }
 
     protected static function performTFIDFSearch(string $query): array
