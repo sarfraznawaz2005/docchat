@@ -23,8 +23,8 @@ return new class extends Migration {
             $table->timestamps();
         });
 
-        DB::statement('CREATE INDEX ON documents USING hnsw (embedding_768 vector_l2_ops)');
-        DB::statement('CREATE INDEX ON documents USING hnsw (embedding_1536 vector_l2_ops)');
+        DB::statement('CREATE INDEX ON documents USING hnsw (embedding_768 vector_cosine_ops)');
+        DB::statement('CREATE INDEX ON documents USING hnsw (embedding_1536 vector_cosine_ops)');
 
         Schema::create('conversations', function (Blueprint $table) {
             $table->id();
