@@ -116,7 +116,7 @@ class LLMUtilities
         return Document::query()
             ->select(['id', 'content', 'llm', 'metadata'])
             ->selectRaw("$field <=> ? AS score", [$queryEmbeddings])
-            ->orderByRaw("$field <=> ?", [$queryEmbeddings]) // in L2, lower is better
+            ->orderByRaw('score') // in L2, lower is better
             ->limit(5)
             ->get()
             ->toArray();
