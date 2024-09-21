@@ -99,6 +99,7 @@ class Chatlist extends Component
             $conversationHistory = implode("\n", array_map(fn($message) => LLMUtilities::htmlToText($message), $uniqueMessages));
 
             $results = LLMUtilities::searchTexts($usertMessage->content);
+            //dd($results);
 
             // try with standalone question
 //            if (!count($results)) {
