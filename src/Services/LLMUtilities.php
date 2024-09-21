@@ -115,7 +115,7 @@ class LLMUtilities
         // Combine with ORDER BY and LIMIT to use an index
         return Document::query()
             ->select(['id', 'content', 'llm', 'metadata'])
-            ->selectRaw("$field <=> ? AS score", [$queryEmbeddings])
+            ->selectRaw("($field <=> ?) AS score", [$queryEmbeddings])
             ->orderByRaw('score') // in L2, lower is better
             ->limit(5)
             ->get()
