@@ -24,7 +24,7 @@ final class DocTalkConstants
     {{CONTEXT}}
     </context>
 
-    Now, analyze the following conversation history:
+    Now, carefully analyze the following conversation history:
 
     <conversation_history>
     {{CONVERSATION_HISTORY}}
