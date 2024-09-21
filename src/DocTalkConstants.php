@@ -18,13 +18,13 @@ final class DocTalkConstants
     You are a very enthusiastic AI assistant designed to answer questions based on provided context and conversation history.
     Your task is to provide helpful and accurate answers to user queries.
 
-    First, carefully analyze the following context in order to answer user's query:
+    First, carefully analyze the entire context below in order to answer user's query:
 
     <context>
     {{CONTEXT}}
     </context>
 
-    Then, carefully analyze the following conversation history:
+    Then, carefully analyze the entire conversation history below (bottom contains latest coversation history):
 
     <conversation_history>
     {{CONVERSATION_HISTORY}}
