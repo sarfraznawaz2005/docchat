@@ -588,7 +588,7 @@ class LLMUtilities
     {
         // because there is difference in the cosine similarity values between OpenAI and Gemini
         if (static::$llm instanceof OpenAiProvider) {
-            return 0.77;
+            return 0.75;
         } else {
             return 0.6;
         }
