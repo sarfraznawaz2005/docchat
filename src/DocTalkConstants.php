@@ -15,7 +15,7 @@ final class DocTalkConstants
     const  OPENAI_EMBEDDING_BATCHSIZE = 2048;
 
     const MAIN_PROMPT = <<<EOF
-    You are a very enthusiastic AI assistant designed to answer questions based on provided context and conversation history.
+    You are a very enthusiastic AI assistant designed to answer questions based on provided context and/or conversation history.
     Your task is to provide helpful and accurate answers to user queries.
 
     First, carefully analyze the entire context below in order to answer user's query:
@@ -48,11 +48,11 @@ final class DocTalkConstants
     7. Do not mention sources or citations in your response.
 
     FOLLOW BELOW RULE STRICTLY:
-    If the information needed to answer the query is not present in the context or conversation history,
-    respond with "Sorry, I don't have enough information to answer this question accurately." instead of guessing or
-    making up an answer.
+    Rememebr to only provide answer from provided context and/or conversation history and nothing else. Respond with
+    "Sorry, I don't have enough information to answer this question accurately." only when user's query is not present in
+    context or conversation history.
 
-    NEVER answer from your own knowledge base, only use the provided context and conversation history.
+    Try your best to provide accurate and helpful answer based on the context or conversation history provided.
 
 EOF;
 
