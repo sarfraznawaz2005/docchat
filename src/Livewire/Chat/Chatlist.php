@@ -102,13 +102,13 @@ class Chatlist extends Component
             //dd($results);
 
             // try with standalone question
-//            if (!count($results)) {
-//                $standAloneQuestion = LLMUtilities::getStandAloneQuestion($usertMessage->content, $conversationHistory);
-//
-//                if ($standAloneQuestion) {
-//                    $results = LLMUtilities::searchTexts($standAloneQuestion);
-//                }
-//            }
+            if (!count($results)) {
+                $standAloneQuestion = LLMUtilities::getStandAloneQuestion($usertMessage->content, $conversationHistory);
+
+                if ($standAloneQuestion) {
+                    $results = LLMUtilities::searchTexts($standAloneQuestion);
+                }
+            }
 
             if (!count($results)) {
                 $this->stream(
