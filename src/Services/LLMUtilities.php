@@ -110,16 +110,41 @@ class LLMUtilities
         );
 
         // openai or gemini
-        $queryEmbeddings = new Vector($queryEmbeddings['embeddings'][0]['values'] ?? $queryEmbeddings[0]['embedding']);
+        $embeddings = $queryEmbeddings['embeddings'][0]['values'] ?? $queryEmbeddings[0]['embedding'];
+        $queryEmbeddings = new Vector($embeddings);
 
         // Combine with ORDER BY and LIMIT to use an index
-        return Document::query()
+        $documents = Document::query()
             ->select(['id', 'content', 'llm', 'metadata'])
             ->selectRaw("($field <=> ?) AS score", [$queryEmbeddings])
             ->orderByRaw('score') // in L2, lower is better
-            ->limit(5)
+            ->limit(10)
             ->get()
             ->toArray();
+
+        $results = [];
+        foreach ($documents as $doc) {
+            $similarity = static::cosineSimilarity($embeddings, json_decode($doc[$field]));
+
+            if ($similarity > static::getSimiliarityThreashold()) {
+                $doc['similarity'] = $similarity;
+                $results[] = $doc;
+            }
+        }
+
+        $results = array_map(fn($item) => [
+            'id' => $item['id'],
+            'llm' => $item['llm'],
+            'metadata' => $item['metadata'],
+            'content' => $item['content'],
+            'score' => $item['similarity']
+        ], $results);
+
+        // order by similarity
+        usort($results, fn($a, $b) => $b['score'] <=> $a['score']);
+        //dd($results);
+
+        return array_filter($results);
     }
 
     protected static function performTFIDFSearch(string $query): array
