@@ -36,7 +36,7 @@ final class DocTalkConstants
     {{USER_QUESTION}}
     </query>
 
-    Using the provided context and conversation history, formulate a helpful answer to the query.
+    Using only the provided context and conversation history, formulate a helpful answer to the query.
     Follow these guidelines:
 
     1. Base your answer primarily on the information given in the context.
@@ -68,10 +68,12 @@ EOF;
     Suggest the user related questions (not more than 3) in below format:
 
     <br>
+
     Related Questions:
 
     Please ensure to always provide related questions using <related_question></related_question> tags in markdown list
     format as shown below:
+
     <br>
 
     - <related_question>Question 1</related_question>
