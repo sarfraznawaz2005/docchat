@@ -235,10 +235,11 @@ body {
     clear: both;
     font-size: 16px;
     line-height: 1.4;
+    box-shadow: 0 4px 4px -1px rgba(0, 0, 0, 0.1);
 }
 
 .chat-container .message.received {
-    background-color: #F7F8F9;
+    background-color: #f7f7f7;
     float: left;
     border-bottom-left-radius: 4px;
 }
