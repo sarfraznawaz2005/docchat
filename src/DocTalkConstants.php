@@ -68,17 +68,15 @@ EOF;
     Suggest the user related questions (not more than 3) in below format:
 
     <br>
-
     Related Questions:
 
     Please ensure to always provide related questions using <related_question></related_question> tags in markdown list
     format as shown below:
-
     <br>
 
-    - <related_question>Question 1</related_question>
-    - <related_question>Question 2</related_question>
-    - <related_question>Question 3</related_question>
+    <related_question>Question 1</related_question>
+    <related_question>Question 2</related_question>
+    <related_question>Question 3</related_question>
 
     4. Strictly follow below guidelines for related questions:
         - Build question solely from the context and conversation history provided.
