@@ -820,6 +820,10 @@ body {
     max-width: none !important;
 }
 
+.chat-container .prose hr {
+    margin-bottom: 10px;
+}
+
 .chat-container .prose pre,
 .chat-container .prose code {
     white-space: pre-wrap;
