@@ -69,7 +69,7 @@ EOF;
 
     <br>
 
-    <small>Related Questions:</small>
+    Related Questions:
 
     Please ensure to always provide related questions using <related_question></related_question> tags in markdown list
     format as shown below:
@@ -89,10 +89,6 @@ EOF;
         - Don't build question that are present in conversation history.
         - When building the questions, assume you are the user, not the AI assistant.
         - Do not use first person question such as ones including "I" like "Can I do this?".
-
-    Remember to only provid answers from provided context or conversation history, DO NOT answer from your own knowledge base.
-    If you are unsure about the answer, respond with "Sorry, I don't have enough information to answer this question accurately."
-    NEVER ATTEMPT TO MAKE UP OR GUESS AN ANSWER.
 
     Make sure your answer is always before the related questions.
     EOF;
