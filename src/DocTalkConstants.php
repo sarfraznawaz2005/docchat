@@ -74,9 +74,9 @@ EOF;
     format as shown below:
     <br>
 
-    <related_question>Question 1</related_question>
-    <related_question>Question 2</related_question>
-    <related_question>Question 3</related_question>
+    - <related_question>Question 1</related_question>
+    - <related_question>Question 2</related_question>
+    - <related_question>Question 3</related_question>
 
     4. Strictly follow below guidelines for related questions:
         - Build question solely from the context and conversation history provided.
