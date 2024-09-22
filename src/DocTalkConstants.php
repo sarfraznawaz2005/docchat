@@ -58,21 +58,14 @@ EOF;
 
     const RELATED_QUESTIONS_PROMPT = <<<EOF
 
-    Finally, follow below steps:
+    At the end of your answer, please also provide related questions (max 3) that are relevant solely to the context and
+    conversation history provided.
 
-    1. Read the context and conversation history provided carefully.
-    2. Build few related questions only & strictly out of the context and the conversation history and nothing else.
-    3. Think through the questions you build and see if you can answer them from the context and conversation history
-    and only then follow below steps:
-
-    Suggest the user related questions (not more than 3) in below format:
+    Use markdown format for better readability and make sure tags are not broken, below is the format:
 
     <br>
 
     Related Questions:
-
-    Please ensure to always provide related questions using <related_question></related_question> tags in markdown list
-    format as shown below:
 
     <br>
 
