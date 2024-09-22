@@ -58,7 +58,7 @@ EOF;
 
     const RELATED_QUESTIONS_PROMPT = <<<EOF
 
-    At the end of your answer, please also provide related questions (max 3) that are relevant solely to the context and
+    Also, at the end of your answer, please also provide related questions (max 3) that are relevant solely to the context and
     conversation history provided.
 
     Please ensure to always provide related questions using <related_question></related_question> tags in markdown list
@@ -74,7 +74,7 @@ EOF;
     - <related_question>Question 2</related_question>
     - <related_question>Question 3</related_question>
 
-    4. Strictly follow below guidelines for related questions:
+    Strictly follow below guidelines for related questions:
         - Build question solely from the context and conversation history provided.
         - Don't build question unless you can answer them from the context and conversation history.
         - Don't build question from your own knowledge base.
