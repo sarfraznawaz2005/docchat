@@ -61,7 +61,8 @@ EOF;
     At the end of your answer, please also provide related questions (max 3) that are relevant solely to the context and
     conversation history provided.
 
-    Use markdown format for better readability and make sure tags are not broken, below is the format:
+    Please ensure to always provide related questions using <related_question></related_question> tags in markdown list
+    format as shown below:
 
     <br>
 
