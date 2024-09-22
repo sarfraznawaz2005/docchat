@@ -64,11 +64,10 @@ EOF;
     Please ensure to always provide related questions using <related_question></related_question> tags in markdown list
     format as shown below:
 
-    <br>
-
+    [newline]
     Related Questions:
 
-    <br>
+    [newline]
 
     - <related_question>Question 1</related_question>
     - <related_question>Question 2</related_question>
