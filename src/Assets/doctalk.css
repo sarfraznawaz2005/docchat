@@ -823,6 +823,7 @@ body {
 
 .chat-container .prose hr {
     margin-bottom: 10px;
+    border: 0.01rem solid #d6d6d6;
 }
 
 .chat-container .prose pre,
