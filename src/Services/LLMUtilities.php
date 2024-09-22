@@ -480,16 +480,6 @@ class LLMUtilities
 
         $prompt .= $relatedQuestionsPrompt;
 
-        if (!config('doctalk.llm.enable_related_questions')) {
-            $prompt .= <<< 'EOL'
-
-        Remember to only provid answers from provided context or conversation history, DO NOT answer from your own knowledge base.
-        If you are unsure about the answer, respond with "Sorry, I don't have enough information to answer this question accurately."
-        NEVER ATTEMPT TO MAKE UP OR GUESS AN ANSWER.
-
-        EOL;
-        }
-
         $prompt .= "\n\nYOUR ANSWER HERE:";
 
         if (app()->environment('local')) {
