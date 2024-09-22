@@ -116,8 +116,8 @@ class LLMUtilities
         // Combine with ORDER BY and LIMIT to use an index
         $documents = Document::query()
             ->select(['id', 'content', 'llm', 'metadata', $field])
-            ->selectRaw("($field <=> ?) AS score", [$queryEmbeddings])
-            ->orderByRaw('score') // in L2, lower is better
+            ->selectRaw("($field <=> ?) AS similarity", [$queryEmbeddings])
+            ->orderByRaw('similarity')
             ->limit(10)
             ->get()
             ->toArray();
@@ -126,7 +126,7 @@ class LLMUtilities
         foreach ($documents as $doc) {
             $similarity = static::cosineSimilarity($embeddings, json_decode($doc[$field]));
 
-            if ($similarity > static::getSimiliarityThreashold()) {
+            if ($similarity >= static::getSimiliarityThreashold()) {
                 $doc['similarity'] = $similarity;
                 $results[] = $doc;
             }
@@ -137,11 +137,11 @@ class LLMUtilities
             'llm' => $item['llm'],
             'metadata' => $item['metadata'],
             'content' => $item['content'],
-            'score' => $item['similarity']
+            'similarity' => $item['similarity']
         ], $results);
 
         // order by similarity
-        usort($results, fn($a, $b) => $b['score'] <=> $a['score']);
+        usort($results, fn($a, $b) => $b['similarity'] <=> $a['similarity']);
         //dd($results);
 
         return array_filter($results);
@@ -588,7 +588,7 @@ class LLMUtilities
     {
         // because there is difference in the cosine similarity values between OpenAI and Gemini
         if (static::$llm instanceof OpenAiProvider) {
-            return 0.75;
+            return 0.77;
         } else {
             return 0.6;
         }
