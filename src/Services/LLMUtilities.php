@@ -505,6 +505,10 @@ class LLMUtilities
 
         $prompt .= $relatedQuestionsPrompt;
 
+        $prompt .= 'Rememebr to only provide answer from provided context and/or conversation history and nothing else. Respond with
+        "Sorry, I don\'t have enough information to answer this question accurately." only when user\'s query is not present in
+        context or conversation history.';
+
         $prompt .= "\n\nYOUR ANSWER HERE:";
 
         if (app()->environment('local')) {
