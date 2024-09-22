@@ -122,6 +122,8 @@ class LLMUtilities
             ->get()
             ->toArray();
 
+        return $documents;
+
         $results = [];
         foreach ($documents as $doc) {
             $similarity = static::cosineSimilarity($embeddings, json_decode($doc[$field]));
