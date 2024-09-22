@@ -67,14 +67,14 @@ EOF;
 
     Suggest the user related questions (not more than 3) in below format:
 
-    [insert single new line here]
+    <br>
 
     <small>Related Questions:</small>
 
     Please ensure to always provide related questions using <related_question></related_question> tags in markdown list
     format as shown below:
 
-    [insert single new line here]
+    <br>
 
     - <related_question>Question 1</related_question>
     - <related_question>Question 2</related_question>
