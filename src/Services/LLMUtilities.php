@@ -122,7 +122,7 @@ class LLMUtilities
             ->get()
             ->toArray();
 
-        return $documents;
+        //return $documents;
 
         $results = [];
         foreach ($documents as $doc) {
@@ -507,12 +507,6 @@ class LLMUtilities
 
         $prompt .= $relatedQuestionsPrompt;
 
-        $prompt .= 'Rememebr to only provide answer from provided context and/or conversation history and nothing else. Respond with
-        "Sorry, I don\'t have enough information to answer this question accurately." only when user\'s query is not present in
-        context or conversation history.';
-
-        $prompt .= "\n\nYOUR ANSWER HERE:";
-
         if (app()->environment('local')) {
             info("\n" . str_repeat('-', 100) . "\n" . $prompt . "\n");
         }
@@ -596,7 +590,7 @@ class LLMUtilities
         if (static::$llm instanceof OpenAiProvider) {
             return 0.75;
         } else {
-            return 0.6;
+            return 0.5;
         }
     }
 
