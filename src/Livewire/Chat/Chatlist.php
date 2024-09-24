@@ -141,7 +141,7 @@ class Chatlist extends Component
                 );
             });
 
-            $consolidatedResponse = "<p class='answer'>$consolidatedResponse</p>";
+            $consolidatedResponse = "<div class='answer'>$consolidatedResponse</div>";
 
             if (config('doctalk.llm.show_sources')) {
                 if (!str_contains(strtolower($consolidatedResponse), 'have enough information to answer this question accurately.')) {

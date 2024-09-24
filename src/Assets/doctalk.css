@@ -933,3 +933,8 @@ body {
     background-color: #fffbef;
     border: 1px solid #b8b06a;
 }
+
+.chat-container answer {
+    display: block;
+    margin-bottom: 15px;
+}
