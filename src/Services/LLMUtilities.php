@@ -144,9 +144,8 @@ class LLMUtilities
 
         // order by similarity
         usort($results, fn($a, $b) => $b['similarity'] <=> $a['similarity']);
-        //dd($results);
 
-        return array_filter($results);
+        return $results;
     }
 
     protected static function performTFIDFSearch(string $query): array
