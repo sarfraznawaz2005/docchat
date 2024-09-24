@@ -118,7 +118,7 @@ class LLMUtilities
             ->select(['id', 'content', 'llm', 'metadata', $field])
             ->selectRaw("($field <=> ?) AS similarity", [$queryEmbeddings])
             ->orderByRaw('similarity')
-            ->limit(10)
+            ->limit(100)
             ->get()
             ->toArray();
 
