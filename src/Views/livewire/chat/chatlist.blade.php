@@ -195,11 +195,13 @@
             <div class="message {{$message->ai ? 'received' : 'sent'}}" x-data="{
                 copied: false,
                 copy () {
-                  navigator.clipboard.writeText($refs.content.innerText)
-                  this.copied = true
-                  setTimeout(() => {
-                    this.copied = false
-                  }, 1000)
+                    const answer = this.$refs.content.querySelector('.answer');
+                    navigator.clipboard.writeText(answer.innerText);
+                    this.copied = true;
+
+                    setTimeout(() => {
+                        this.copied = false;
+                    }, 1000);
                 }
               }">
 

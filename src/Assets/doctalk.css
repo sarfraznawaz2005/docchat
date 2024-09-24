@@ -928,3 +928,8 @@ body {
     border-radius: 4px;
     font-size: 0.9rem;
 }
+
+.chat-container .debug {
+    background-color: #fffbef;
+    border: 1px solid #b8b06a;
+}

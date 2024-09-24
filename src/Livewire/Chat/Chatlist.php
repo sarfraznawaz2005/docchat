@@ -92,6 +92,7 @@ class Chatlist extends Component
 
             $llm = LLMUtilities::getLLM();
             $context = '';
+            $scores = '';
             $metadata = [];
 
             $latestMessages = $this->getLatestMessages($this->conversation);
@@ -122,6 +123,7 @@ class Chatlist extends Component
 
             // build context
             foreach ($results as $result) {
+                $scores .= '<span class="blue">' . $result['similarity'] . '</span><br>';
                 $context .= $result['content'] . "\n\n";
                 $metadata[] = $result['metadata'];
             }
@@ -139,17 +141,32 @@ class Chatlist extends Component
                 );
             });
 
-            $consolidatedResponse = LLMUtilities::processMarkdownToHtml($consolidatedResponse);
+            $consolidatedResponse = "<p class='answer'>$consolidatedResponse</p>";
 
             if (config('doctalk.llm.show_sources')) {
                 if (!str_contains(strtolower($consolidatedResponse), 'have enough information to answer this question accurately.')) {
-                    $consolidatedResponse .= '<small>Sources: ' . LLMUtilities::formatMetadata($metadata) . '</small>';
+                    $consolidatedResponse .= '<hr><small>Sources: ' . LLMUtilities::formatMetadata($metadata) . '</small>';
                 }
+            }
+
+            $consolidatedResponse = LLMUtilities::processMarkdownToHtml($consolidatedResponse);
+
+            if (env('DOCTALK_DEBUG')) {
+                $prompt = htmlentities($prompt, ENT_QUOTES, 'UTF-8');
+                $consolidatedResponse .= "<br><br><pre class='debug'>$prompt</pre>";
+
+                $consolidatedResponse .= "<br><pre class='debug'>$scores</pre>";
+
+                $this->stream(
+                    to: 'liveUpdate',
+                    content: $consolidatedResponse
+                );
             }
 
             $tempMessage->update([
                 'content' => $consolidatedResponse,
             ]);
+
         } catch (Exception $e) {
             Log::error(__CLASS__ . ': ' . $e->getMessage());
             $error = '<span class="red">Oops! Failed to get a response, please try again.' . ' ' . $e->getMessage() . '</span>';
