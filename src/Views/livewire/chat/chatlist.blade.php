@@ -195,7 +195,9 @@
             <div class="message {{$message->ai ? 'received' : 'sent'}}" x-data="{
                 copied: false,
                 copy () {
-                    const answer = this.$refs.content.querySelector('answer') || this.$refs.content.querySelector('.answer');
+                    const answer = this.$refs.content.querySelector('answer')
+                        || this.$refs.content.querySelector('.answer') || this.$refs.content;
+
                     navigator.clipboard.writeText(answer.innerText);
                     this.copied = true;
 
