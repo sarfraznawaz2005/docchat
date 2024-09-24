@@ -779,12 +779,6 @@ body {
     padding-left: 20px;
 }
 
-.chat-container .message-content li {
-    list-style: none;
-    align-items: flex-start;
-    justify-items: center;
-}
-
 .chat-container .prose blockquote {
     font-style: italic;
     color: #6b7280;
@@ -859,10 +853,6 @@ body {
     color: #888888;
 }
 
-.chat-container .message-content li {
-    list-style: square;
-}
-
 .chat-container .prose pre {
     border-radius: 10px;
     padding: 10px !important;
@@ -874,7 +864,7 @@ body {
 }
 
 .chat-container a.ai-suggested-answer {
-    font-size: 1rem;
+    font-size: 15px;
 }
 
 .chat-container fieldset {
