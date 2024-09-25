@@ -31,7 +31,7 @@ class Chatlist extends Component
             $userId = auth()->check() ? auth()->id() : 0;
 
             if ($this->conversation->user_id !== $userId) {
-                abort(404);
+                abort(404, 'You are not authorized to view this resource!');
             }
 
             if (session()->has('lastUserMessage')) {
