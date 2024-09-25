@@ -27,6 +27,13 @@ class Chatlist extends Component
         $this->conversation = $conversation;
 
         if ($this->conversation->exists) {
+
+            $userId = auth()->check() ? auth()->id() : 0;
+
+            if ($this->conversation->user_id !== $userId) {
+                abort(404);
+            }
+
             if (session()->has('lastUserMessage')) {
                 session()->forget('lastUserMessage');
                 $this->dispatch('getAIResponse');
