@@ -4,11 +4,6 @@ body {
     padding: 0;
 }
 
-::selection {
-    background-color: #48bb78;
-    color: white;
-}
-
 [x-cloak] {
     display: none !important;
 }
@@ -1011,4 +1006,9 @@ body {
 
 .chat-container .brown-box {
     background-image: linear-gradient(to bottom,#a1887f 45%,#8d6e63 102%);
+}
+
+.chat-container ::selection {
+    background-color: #FEF08A;
+    color:#444;
 }
