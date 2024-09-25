@@ -34,6 +34,7 @@ body {
 .chat-container .sidebar {
     width: 300px;
     background-color: #f2f3f4;
+    border-right: 1px solid #e0e0e0;
     overflow-y: auto;
     overflow-x: hidden;
     position: fixed;
@@ -240,17 +241,21 @@ body {
     clear: both;
     font-size: 16px;
     line-height: 1.4;
-    box-shadow: 0 4px 4px -1px rgba(0, 0, 0, 0.1);
+    /*box-shadow: 0 4px 4px -1px rgba(0, 0, 0, 0.1);*/
 }
 
 .chat-container .message.received {
+    /*background-image: linear-gradient(to bottom, #f7f7f7 20%, #f3f3f3 102%);*/
     background-color: #f7f7f7;
+    border: 1px solid #e3e3e3;
     float: left;
     border-bottom-left-radius: 4px;
 }
 
 .chat-container .message.sent {
+    /*background-image: linear-gradient(to bottom,#D9F99D 45%,#c6e38e 102%);*/
     background-color: #e5fcd4;
+    border: 1px solid #d3e8c4;
     float: right;
     border-bottom-right-radius: 4px;
 }
@@ -930,11 +935,80 @@ body {
 }
 
 .chat-container .debug {
-    background-color: #fffbef;
-    border: 1px solid #b8b06a;
+    background:#fffde6;
+    border: 1px solid #e8e6d1;
+    padding: 10px;
 }
 
 .chat-container answer {
     display: block;
     margin-bottom: 15px;
+}
+
+.chat-container .gray-box {
+    background-image: linear-gradient(to bottom,#E5E7EB 45%,#D1D5DB 102%);
+}
+
+.chat-container .gray-light-box {
+    background-image: linear-gradient(to bottom,#E5E7EB 45%,#d0d2d3 102%);
+}
+
+.chat-container .orange-box {
+    background-image: linear-gradient(to bottom,#ff8a65 45%,#f07853 102%);
+}
+
+.chat-container .red-box {
+    background-image: linear-gradient(to bottom,#ff8181 45%,#ee7777 102%);
+}
+
+.chat-container .red-light-box {
+    background-image: linear-gradient(to bottom,#ffbdbd 45%,#ffa5a5 102%);
+}
+
+.chat-container .sky-box {
+    background-image: linear-gradient(to bottom,#52aeff 45%,#3d9cef 102%);
+}
+
+.chat-container .blue-box {
+    background-image: linear-gradient(to bottom,#2f63ef 45%,#1D4ED8 102%);
+}
+
+.chat-container .blue-light-box {
+    background-image: linear-gradient(to bottom,#BFDBFE 45%,#a9c7ee 102%);
+}
+
+.chat-container .green-box {
+    background-image: linear-gradient(to bottom,#22C55E 45%,#1fad53 102%);
+}
+
+.chat-container .green-light-box {
+    background-image: linear-gradient(to bottom,#9bfcb9 45%,#93eaad 102%);
+}
+
+.chat-container .lime-box {
+    background-image: linear-gradient(to bottom,#87B81A 45%,#7faa19 102%);
+}
+
+.chat-container .lime-light-box {
+    background-image: linear-gradient(to bottom,#D9F99D 45%,#c6e38e 102%);
+}
+
+.chat-container .violet-box {
+    background-image: linear-gradient(to bottom,#b450b2 45%,#853685 102%);
+}
+
+.chat-container .yellow-box {
+    background-image: linear-gradient(to bottom,#ffc91c 45%,#fab219 102%);
+}
+
+.chat-container .yellow-light-box {
+    background-image: linear-gradient(to bottom,#FEF08A 45%,#ecde7f 102%);
+}
+
+.chat-container .purple-box {
+    background-image: linear-gradient(to bottom,#7e57c2 45%,#6a44b7 102%);
+}
+
+.chat-container .brown-box {
+    background-image: linear-gradient(to bottom,#a1887f 45%,#8d6e63 102%);
 }
