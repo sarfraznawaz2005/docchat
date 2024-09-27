@@ -65,7 +65,7 @@ return [
         // API key for the selected LLM provider
         'api_key' => env('DOCTALK_LLM_API_KEY'),
         // Gemini: "gemini-1.5-flash", "gemini-1.5-pro", OpenAI: "gpt-4o-mini", "gpt-4o", etc
-        'llm_model' => 'gemini-1.5-flash',
+        'llm_model' => 'gemini-1.5-flash-002',
         'options' => [
             'maxOutputTokens' => 8192, // Gemini: 8192, OpenAI: 4096 (use "max_tokens" for OpenAI)
             'temperature' => 0.5, // Gemini default: 1.0, OpenAI default: 0.7
