@@ -60,6 +60,7 @@ final class DocTalkConstants
        b. Do not use any external knowledge or information not provided in the context or conversation history.
        c. If the query is not addressed in the context or conversation history, use the specified response for insufficient information.
        d. Make every effort to provide an accurate and helpful answer based solely on the provided information.
+       e. Try to use bullet points and tabels and other formatting options to make your answer more readable and structured if possible.
 
     Now, based on these instructions, carefully analyze the context and conversation history, and try your very best
     provide your response to the user's query.
