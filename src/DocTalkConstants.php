@@ -14,6 +14,9 @@ final class DocTalkConstants
     const  GEMINI_EMBEDDING_BATCHSIZE = 100;
     const  OPENAI_EMBEDDING_BATCHSIZE = 2048;
 
+    const  GEMINI_SIMILARITY_THRESHOLD = 0.5;
+    const  OPENAI_SIMILARITY_THRESHOLD = 0.75;
+
     const MAIN_PROMPT = <<<EOF
     You are an AI assistant designed to answer questions based on provided context and conversation history. Your task
     is to provide helpful and accurate answers to user queries. Follow these instructions carefully:

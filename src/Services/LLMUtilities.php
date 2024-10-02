@@ -587,9 +587,9 @@ class LLMUtilities
     {
         // because there is difference in the cosine similarity values between OpenAI and Gemini
         if (static::$llm instanceof OpenAiProvider) {
-            return 0.75;
+            return DocTalkConstants::OPENAI_SIMILARITY_THRESHOLD;
         } else {
-            return 0.5;
+            return DocTalkConstants::GEMINI_SIMILARITY_THRESHOLD;
         }
     }
 
